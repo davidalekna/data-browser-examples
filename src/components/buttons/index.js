@@ -1,9 +1,9 @@
-import React from "react";
-import { Icon, StyledIconButton } from "../styles";
+import React from 'react';
+import { Icon, StyledIconButton } from './styles';
 
 export const IconButton = ({
   children,
-  size = "18px",
+  size = '18px',
   loading,
   bg,
   color,
