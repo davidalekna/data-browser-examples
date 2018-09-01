@@ -53,56 +53,6 @@ export const RowItem = styled.div`
   cursor: ${({ cursor }) => (cursor ? cursor : 'default')};
 `;
 
-export const CellWithMenu = styled.div`
-  position: absolute;
-  min-height: 120px;
-  z-index: 10;
-  outline: none;
-  border: 1px dashed red;
-  background: white;
-  width: ${({ width }) => (width ? `${width}px` : '170px')};
-  border: 1px solid #ddd;
-  border-radius: 3px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  top: ${({ top }) => (top ? `${top}px` : null)};
-  right: ${({ right }) => (right ? `${right}px` : null)};
-  left: ${({ left }) => (left ? `${left}px` : null)};
-
-  ul {
-    margin: 0;
-    padding: 0 0 10px 0;
-  }
-
-  ul > li {
-    text-transform: capitalize;
-    list-style: none;
-    display: flex;
-    align-items: center;
-    height: 28px;
-    padding: 18px 35px;
-    font-size: 14px;
-    color: #222;
-    font-weight: 400;
-    cursor: pointer;
-    white-space: nowrap;
-  }
-
-  ul > li:hover {
-    background: #4286f4;
-    color: white;
-  }
-
-  span {
-    display: block;
-    color: #444;
-    font-weight: 500;
-    text-transform: uppercase;
-    font-size: 11px;
-    padding: 18px 35px 10px 35px;
-  }
-`;
-
 export const HeadCellMenuPopup = styled.ul`
   max-height: 230px;
   overflow-x: auto;

@@ -4,6 +4,8 @@ import { GridView, GridItem } from './styles';
 import fieldReducer from './fieldReducer';
 import { Image } from './styles';
 import { Checkbox } from '../formElements';
+import { OptionsMenu } from './components/OptionsMenu';
+import { IconButton } from '../buttons';
 
 export const TableGrid = ({
   items,
@@ -22,6 +24,15 @@ export const TableGrid = ({
               onChange={() => checkboxToggle({ rowId: row.id })}
             />
           )}
+          <OptionsMenu
+            width={40}
+            checked={checkboxState(row.id)}
+            render={({ isOpen, ...props }) => (
+              <IconButton {...props} color={isOpen ? 'red' : '#999'}>
+                more_horiz
+              </IconButton>
+            )}
+          />
           {row && row.album && <Image src={row.album.url} alt="" />}
           {visibleColumns.map(({ label, sortField, isLocked }, index) => (
             <div key={sortField}>
