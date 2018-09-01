@@ -1,12 +1,12 @@
-import React from "react";
-import { Input } from "react-powerplug";
-import { ControlledInput } from "./styles";
+import React from 'react';
+import { Input } from 'react-powerplug';
+import { ControlledInput } from './components/formElements';
 
 // TODO: on one of the fields show array list of labels
 
-function fieldReducer(fieldValue = "🍔", fieldName) {
+function fieldReducer(fieldValue = '🍔', fieldName) {
   switch (fieldName) {
-    case "username":
+    case 'username':
       return (
         <Input initial={fieldValue}>
           {({ bind }) => (
@@ -14,9 +14,9 @@ function fieldReducer(fieldValue = "🍔", fieldName) {
           )}
         </Input>
       );
-    case "name":
+    case 'name':
       return `🌄 ${fieldValue}`;
-    case "email":
+    case 'email':
       return `📝 ${fieldValue}`;
     default:
       return fieldValue;

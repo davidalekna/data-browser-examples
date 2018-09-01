@@ -2,23 +2,20 @@ import './reset.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import sort from 'ramda/src/sort';
-import DataBrowser, { getObjectPropertyByString } from 'react-data-browser';
+import DataBrowser from 'react-data-browser';
 import fieldReducer from './fieldReducer';
 import accessibleColumns from './columns';
-import { Title, Root } from './styles';
+import { Title, Root } from './components/globals';
 import { IconButton } from './components/buttons';
+import { TableGrid } from './components/grid';
 import {
+  TableList,
   Table,
-  TableBody,
   FixedTableHead,
-  Row,
-  RowItem,
   HeadCell,
   RowOptionsCell,
   Loading,
 } from './components/table';
-
-// NOTE: example not complete
 
 class App extends React.Component {
   state = { rows: [], loading: true };
@@ -28,10 +25,21 @@ class App extends React.Component {
       .then(rows => this.setState({ rows, loading: false }));
   }
   onStateChange = (action, { defaultSortMethod }) => {
+    console.log(action.type);
     if (action.type === '__sort_data__') {
       this.setState(state => ({
         rows: sort(defaultSortMethod, state.rows),
       }));
+    }
+  };
+  renderView = ({ viewType, ...rest }) => {
+    switch (viewType) {
+      case 'GRID_VIEW':
+        return <TableGrid {...rest} />;
+      case 'LIST_VIEW':
+        return <TableList {...rest} />;
+      default:
+        return <TableList {...rest} />;
     }
   };
   render() {
@@ -39,7 +47,6 @@ class App extends React.Component {
       <Root>
         <Title>{`Data Browser 🗄`}</Title>
         <DataBrowser
-          debug
           columnFlex={['1 1 40%', '0 0 30%', '0 0 30%']}
           columns={accessibleColumns}
           onStateChange={this.onStateChange}
@@ -97,51 +104,16 @@ class App extends React.Component {
                     )}
                   />
                 </FixedTableHead>
-                <TableBody>
-                  {this.state.rows.map((row, key) => (
-                    <Row key={key} selectable>
-                      <RowItem style={{ width: fixedColWidth }} flex="0 0 auto">
-                        <input
-                          type="checkbox"
-                          id={row.id}
-                          checked={checkboxState(row.id)}
-                          onChange={() => checkboxToggle({ rowId: row.id })}
-                        />
-                      </RowItem>
-                      {visibleColumns.map(
-                        ({ label, sortField, isLocked }, index) => (
-                          <RowItem
-                            key={sortField}
-                            flex={columnFlex[index]}
-                            cursor="pointer"
-                            checked={checkboxState(row.id)}
-                            onClick={() =>
-                              alert(`🦄 clicked on a row (id) ${row.id}`)
-                            }
-                          >
-                            {isLocked && `🔒 `}
-                            {fieldReducer(
-                              getObjectPropertyByString(row, sortField),
-                              sortField,
-                            )}
-                          </RowItem>
-                        ),
-                      )}
-                      <RowOptionsCell
-                        width={fixedColWidth}
-                        checked={checkboxState(row.id)}
-                        render={({ isOpen, ...props }) => (
-                          <IconButton
-                            {...props}
-                            color={isOpen ? 'red' : '#999'}
-                          >
-                            more_horiz
-                          </IconButton>
-                        )}
-                      />
-                    </Row>
-                  ))}
-                </TableBody>
+                {this.renderView({
+                  viewType,
+                  items: this.state.rows,
+                  visibleColumns: visibleColumns,
+                  fixedColWidth: fixedColWidth,
+                  checkboxState: checkboxState,
+                  checkboxToggle: checkboxToggle,
+                  fieldReducer: fieldReducer,
+                  columnFlex: columnFlex,
+                })}
               </Table>
             );
           }}

@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { FlexCol, FlexRow } from '../../styles';
+import { FlexCol, FlexRow } from '../globals';
 
 export const Table = styled(FlexCol)`
   position: relative;
