@@ -3,11 +3,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import sort from 'ramda/src/sort';
 import DataBrowser from 'react-data-browser';
-import fieldReducer from './fieldReducer';
 import accessibleColumns from './columns';
+import axios from 'axios';
 import { Title, Root } from './components/globals';
 import { IconButton } from './components/buttons';
 import { TableGrid } from './components/grid';
+import { Checkbox } from './components/formElements';
 import {
   TableList,
   Table,
@@ -19,10 +20,23 @@ import {
 
 class App extends React.Component {
   state = { rows: [], loading: true };
-  componentDidMount() {
-    fetch('https://jsonplaceholder.typicode.com/users')
-      .then(response => response.json())
-      .then(rows => this.setState({ rows, loading: false }));
+  async componentDidMount() {
+    const usersPromise = axios.get(
+      'https://jsonplaceholder.typicode.com/users',
+    );
+    const albumsPromise = axios.get(
+      'https://jsonplaceholder.typicode.com/photos?albumId=1',
+    );
+
+    const users = await usersPromise;
+    const albums = await albumsPromise;
+
+    const rows = users.data.map(user => ({
+      ...user,
+      album: albums.data.find(album => album.id === user.id),
+    }));
+
+    this.setState({ rows, loading: false });
   }
   onStateChange = (action, { defaultSortMethod }) => {
     console.log(action.type);
@@ -75,8 +89,8 @@ class App extends React.Component {
                     style={{ width: fixedColWidth }}
                     flex="0 0 auto"
                     render={() => (
-                      <input
-                        type="checkbox"
+                      <Checkbox
+                        position="relative"
                         checked={selectAllCheckboxState}
                         onChange={() =>
                           onSelection({
@@ -111,7 +125,6 @@ class App extends React.Component {
                   fixedColWidth: fixedColWidth,
                   checkboxState: checkboxState,
                   checkboxToggle: checkboxToggle,
-                  fieldReducer: fieldReducer,
                   columnFlex: columnFlex,
                 })}
               </Table>

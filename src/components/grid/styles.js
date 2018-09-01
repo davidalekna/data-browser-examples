@@ -9,7 +9,14 @@ export const GridView = styled.section`
 `;
 
 export const GridItem = styled.div`
-  height: 240px;
-  background: #ddd;
+  position: relative;
+  height: 260px;
+  background: ${({ checked }) => (checked ? 'rgba(66,134,244,0.3)' : ' #ddd')};
   padding: 10px;
+`;
+
+export const Image = styled.img`
+  width: 100%;
+  height: auto;
+  max-height: 150px;
 `;

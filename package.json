@@ -5,6 +5,7 @@
   "keywords": [],
   "main": "src/index.js",
   "dependencies": {
+    "axios": "^0.18.0",
     "downshift": "2.1.5",
     "ramda": "0.25.0",
     "react": "16.4.2",

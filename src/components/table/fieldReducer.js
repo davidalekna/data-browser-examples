@@ -1,6 +1,6 @@
 import React from 'react';
 import { Input } from 'react-powerplug';
-import { ControlledInput } from './components/formElements';
+import { ControlledInput } from '../formElements';
 
 // TODO: on one of the fields show array list of labels
 
@@ -18,6 +18,8 @@ function fieldReducer(fieldValue = '🍔', fieldName) {
       return `🌄 ${fieldValue}`;
     case 'email':
       return `📝 ${fieldValue}`;
+    case 'album':
+      return `${fieldValue.title}`;
     default:
       return fieldValue;
   }

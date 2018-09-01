@@ -3,6 +3,8 @@ import { getObjectPropertyByString } from 'react-data-browser';
 import { TableBody, Row, RowItem } from './styles';
 import { RowOptionsCell } from './components/RowOptionsCell';
 import { IconButton } from '../buttons';
+import fieldReducer from './fieldReducer';
+import { Checkbox } from '../formElements';
 
 export const TableList = ({
   items,
@@ -10,15 +12,13 @@ export const TableList = ({
   checkboxState,
   checkboxToggle,
   visibleColumns,
-  fieldReducer,
   columnFlex,
 }) => (
   <TableBody>
     {items.map((row, key) => (
       <Row key={key} selectable>
         <RowItem style={{ width: fixedColWidth }} flex="0 0 auto">
-          <input
-            type="checkbox"
+          <Checkbox
             id={row.id}
             checked={checkboxState(row.id)}
             onChange={() => checkboxToggle({ rowId: row.id })}
