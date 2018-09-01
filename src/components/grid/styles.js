@@ -5,7 +5,7 @@ export const GridView = styled.section`
   overflow-x: auto;
   grid-gap: 15px;
   padding: 15px;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(auto-fill, minmax(260px, auto));
 `;
 
 export const GridItem = styled.div`
