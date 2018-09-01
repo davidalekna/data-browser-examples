@@ -49,9 +49,9 @@ const HeadCellMenu = ({ dataBrowser, selected, toggleMenu, activeLabel }) => {
               {dataBrowser.offsetColumns().map((column, i) => (
                 <li
                   key={i}
-                  style={{ color: column.offset && '#ccc' }}
+                  style={{ color: column.visible && '#ccc' }}
                   onClick={
-                    !column.offset
+                    !column.visible
                       ? pipe(
                           toggleMenu,
                           () =>
