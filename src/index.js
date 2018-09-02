@@ -65,6 +65,7 @@ class App extends React.Component {
           <Title>{`Data Browser 🗄`}</Title>
           <DataBrowser
             columnFlex={['1 1 40%', '0 0 30%', '0 0 30%']}
+            totalItems={this.state.rows.length}
             columns={accessibleColumns}
             onStateChange={this.onStateChange}
           >
