@@ -23,9 +23,9 @@ export const Checkbox = props => {
         align={props.align || 'center'}
       >
         {props.checked ? (
-          <Icon color="#777">check_box</Icon>
+          <Icon color={props.color}>check_box</Icon>
         ) : (
-          <Icon color={props.disabled ? '#CCC' : '#777'}>
+          <Icon color={props.disabled ? '#CCC' : props.color}>
             check_box_outline_blank
           </Icon>
         )}

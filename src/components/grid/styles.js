@@ -24,3 +24,7 @@ export const Image = styled.img`
   height: auto;
   max-height: 150px;
 `;
+
+export const Absolute = styled.div`
+  position: absolute;
+`;
