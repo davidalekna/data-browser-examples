@@ -1,4 +1,11 @@
+import React from 'react';
 import styled from 'styled-components';
+import {
+  StyledLabel,
+  StyledCheckboxWrapper,
+  StyledHiddenInput,
+} from './styles';
+import { Icon } from '../buttons';
 
 export const ControlledInput = styled.input`
   font-size: 1em;
@@ -8,9 +15,29 @@ export const ControlledInput = styled.input`
   font-style: italic;
 `;
 
-export const Checkbox = styled.input.attrs({
-  type: 'checkbox',
-})`
-  position: ${({ position }) => (position ? position : 'absolute')};
-  cursor: pointer;
-`;
+export const Checkbox = props => {
+  return (
+    <StyledLabel>
+      <StyledCheckboxWrapper
+        disabled={props.disabled || false}
+        align={props.align || 'center'}
+      >
+        {props.checked ? (
+          <Icon color="#777">check_box</Icon>
+        ) : (
+          <Icon color={props.disabled ? '#CCC' : '#777'}>
+            check_box_outline_blank
+          </Icon>
+        )}
+        <StyledHiddenInput
+          type="checkbox"
+          id={props.id}
+          checked={props.checked}
+          disabled={props.disabled || false}
+          onChange={props.onChange}
+        />
+        {props.children}
+      </StyledCheckboxWrapper>
+    </StyledLabel>
+  );
+};

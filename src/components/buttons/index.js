@@ -15,3 +15,5 @@ export const IconButton = ({
     </Icon>
   </StyledIconButton>
 );
+
+export { Icon };

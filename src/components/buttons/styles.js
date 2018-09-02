@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Icon = styled.i.attrs({
   className: 'material-icons',
 })`
-  color: ${({ color }) => (color ? color : '#444')};
+  color: ${({ theme, color }) => (color ? color : theme.text)};
   font-size: ${({ size }) => size};
   margin: 0;
   padding: 0;

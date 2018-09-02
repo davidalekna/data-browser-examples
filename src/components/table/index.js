@@ -40,7 +40,7 @@ export const TableList = ({
           width={fixedColWidth}
           checked={checkboxState(row.id)}
           render={({ isOpen, ...props }) => (
-            <IconButton {...props} color={isOpen ? 'red' : '#999'}>
+            <IconButton {...props} color={isOpen ? 'white' : '#999'}>
               more_horiz
             </IconButton>
           )}

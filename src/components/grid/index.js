@@ -28,7 +28,7 @@ export const TableGrid = ({
             width={40}
             checked={checkboxState(row.id)}
             render={({ isOpen, ...props }) => (
-              <IconButton {...props} color={isOpen ? 'red' : '#999'}>
+              <IconButton {...props} color={isOpen ? 'blue' : '#999'}>
                 more_horiz
               </IconButton>
             )}

@@ -18,8 +18,8 @@ export const FixedTableHead = styled(FlexRow)`
   flex: 0 0 auto;
   height: auto;
   background: white;
-  color: #777;
-  border-bottom: 1px solid #ddd;
+  color: ${({ theme }) => theme.text.alt};
+  border-bottom: 1px solid ${({ theme }) => theme.bg.border};
   padding: 0 5px;
   font-size: 12px;
 `;
@@ -32,7 +32,7 @@ export const HeadRowItem = styled.div`
 
 export const Row = styled(FlexRow)`
   flex: 0 0 auto;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid ${({ theme }) => theme.bg.wash};
   &:hover {
     background: ${({ selectable }) => selectable && '#4286f4'};
     color: white;
@@ -49,7 +49,7 @@ export const RowItem = styled.div`
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  background: ${({ checked }) => (checked ? 'rgba(242,242,242,0.5)' : null)};
+  background: ${({ checked, theme }) => (checked ? theme.bg.inactive : null)};
   cursor: ${({ cursor }) => (cursor ? cursor : 'default')};
 `;
 

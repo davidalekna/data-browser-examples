@@ -5,10 +5,12 @@ import sort from 'ramda/src/sort';
 import DataBrowser from 'react-data-browser';
 import accessibleColumns from './columns';
 import axios from 'axios';
+import { ThemeProvider } from 'styled-components';
 import { Title, Root } from './components/globals';
 import { IconButton } from './components/buttons';
 import { TableGrid } from './components/grid';
 import { Checkbox } from './components/formElements';
+import theme from './theme';
 import {
   TableList,
   Table,
@@ -58,80 +60,84 @@ class App extends React.Component {
   };
   render() {
     return (
-      <Root>
-        <Title>{`Data Browser 🗄`}</Title>
-        <DataBrowser
-          columnFlex={['1 1 40%', '0 0 30%', '0 0 30%']}
-          columns={accessibleColumns}
-          onStateChange={this.onStateChange}
-        >
-          {({
-            columnFlex,
-            visibleColumns,
-            selectAllCheckboxState,
-            checkboxState,
-            onSelection,
-            checkboxToggle,
-            viewType,
-          }) => {
-            const fixedColWidth = 40;
-            if (this.state.loading) {
+      <ThemeProvider theme={theme.default}>
+        <Root>
+          <Title>{`Data Browser 🗄`}</Title>
+          <DataBrowser
+            columnFlex={['1 1 40%', '0 0 30%', '0 0 30%']}
+            columns={accessibleColumns}
+            onStateChange={this.onStateChange}
+          >
+            {({
+              columnFlex,
+              visibleColumns,
+              selectAllCheckboxState,
+              checkboxState,
+              onSelection,
+              checkboxToggle,
+              viewType,
+            }) => {
+              const fixedColWidth = 40;
+              if (this.state.loading) {
+                return (
+                  <Loading
+                    {...{ visibleColumns, columnFlex, numberOfRows: 20 }}
+                  />
+                );
+              }
               return (
-                <Loading
-                  {...{ visibleColumns, columnFlex, numberOfRows: 20 }}
-                />
-              );
-            }
-            return (
-              <Table>
-                <FixedTableHead>
-                  <HeadCell
-                    style={{ width: fixedColWidth }}
-                    flex="0 0 auto"
-                    render={() => (
-                      <Checkbox
-                        position="relative"
-                        checked={selectAllCheckboxState}
-                        onChange={() =>
-                          onSelection({
-                            items: this.state.rows.map(item => item.id),
-                          })
-                        }
-                      />
-                    )}
-                  />
-                  {visibleColumns.map((cell, index) => (
+                <Table>
+                  <FixedTableHead>
                     <HeadCell
-                      key={index}
-                      selected={cell}
-                      flex={columnFlex[index]}
-                      render={props => <div {...props}>{cell.label}</div>}
+                      style={{ width: fixedColWidth }}
+                      flex="0 0 auto"
+                      render={() => (
+                        <Checkbox
+                          position="relative"
+                          checked={selectAllCheckboxState}
+                          onChange={() =>
+                            onSelection({
+                              items: this.state.rows.map(item => item.id),
+                            })
+                          }
+                        />
+                      )}
                     />
-                  ))}
-                  <RowOptionsCell
-                    head
-                    width={fixedColWidth}
-                    render={({ isOpen, ...props }) => (
-                      <IconButton {...props} color={isOpen ? 'red' : '#555'}>
-                        {viewType === 'LIST_VIEW' ? 'view_list' : 'view_module'}
-                      </IconButton>
-                    )}
-                  />
-                </FixedTableHead>
-                {this.renderView({
-                  viewType,
-                  items: this.state.rows,
-                  visibleColumns: visibleColumns,
-                  fixedColWidth: fixedColWidth,
-                  checkboxState: checkboxState,
-                  checkboxToggle: checkboxToggle,
-                  columnFlex: columnFlex,
-                })}
-              </Table>
-            );
-          }}
-        </DataBrowser>
-      </Root>
+                    {visibleColumns.map((cell, index) => (
+                      <HeadCell
+                        key={index}
+                        selected={cell}
+                        flex={columnFlex[index]}
+                        render={props => <div {...props}>{cell.label}</div>}
+                      />
+                    ))}
+                    <RowOptionsCell
+                      head
+                      width={fixedColWidth}
+                      render={({ isOpen, ...props }) => (
+                        <IconButton {...props} color={isOpen ? 'blue' : '#555'}>
+                          {viewType === 'LIST_VIEW'
+                            ? 'view_list'
+                            : 'view_module'}
+                        </IconButton>
+                      )}
+                    />
+                  </FixedTableHead>
+                  {this.renderView({
+                    viewType,
+                    items: this.state.rows,
+                    visibleColumns: visibleColumns,
+                    fixedColWidth: fixedColWidth,
+                    checkboxState: checkboxState,
+                    checkboxToggle: checkboxToggle,
+                    columnFlex: columnFlex,
+                  })}
+                </Table>
+              );
+            }}
+          </DataBrowser>
+        </Root>
+      </ThemeProvider>
     );
   }
 }

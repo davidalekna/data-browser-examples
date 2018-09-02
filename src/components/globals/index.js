@@ -67,13 +67,13 @@ export const CellWithMenu = styled.div`
   }
 
   ul > li:hover {
-    background: #4286f4;
+    background: ${({ theme }) => theme.brand};
     color: white;
   }
 
   span {
     display: block;
-    color: #444;
+    color: ${({ theme }) => theme.text.alt.darker};
     font-weight: 500;
     text-transform: uppercase;
     font-size: 11px;
