@@ -26,8 +26,11 @@ export const FixedTableHead = styled(FlexRow)`
 
 export const HeadRowItem = styled.div`
   display: flex;
-  padding: 10px;
   text-transform: uppercase;
+  height: 46px;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 10px;
 `;
 
 export const Row = styled(FlexRow)`

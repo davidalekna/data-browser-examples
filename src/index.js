@@ -90,8 +90,11 @@ class App extends React.Component {
                 <Table>
                   <FixedTableHead>
                     <HeadCell
-                      style={{ width: fixedColWidth }}
-                      flex="0 0 auto"
+                      style={{
+                        flex: '0 0 auto',
+                        width: fixedColWidth,
+                        position: 'relative',
+                      }}
                       render={() => (
                         <Checkbox
                           position="relative"
