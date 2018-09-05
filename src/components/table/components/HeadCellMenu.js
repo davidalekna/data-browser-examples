@@ -6,6 +6,13 @@ import pipe from 'ramda/src/pipe';
 
 const HeadCellMenu = ({ dataBrowser, selected, toggleMenu, activeLabel }) => {
   const sortField = `${selected.sortField}`;
+  const showFieldsMenu =
+    !selected.isLocked &&
+    dataBrowser.offsetColumns().length > 0 &&
+    dataBrowser
+      .offsetColumns()
+      .map(c => c.visible)
+      .includes(false);
   return (
     <CellWithMenu left={0} top={32}>
       <div style={{ borderBottom: '1px solid #ddd' }}>
@@ -41,35 +48,34 @@ const HeadCellMenu = ({ dataBrowser, selected, toggleMenu, activeLabel }) => {
           </li>
         </ul>
       </div>
-      {!selected.isLocked &&
-        dataBrowser.offsetColumns().length > 0 && (
-          <HeadCellMenuPopup>
-            <span>show</span>
-            <ul>
-              {dataBrowser.offsetColumns().map((column, i) => (
-                <li
-                  key={i}
-                  style={{ color: column.visible && '#ccc' }}
-                  onClick={
-                    !column.visible
-                      ? pipe(
-                          toggleMenu,
-                          () =>
-                            dataBrowser.switchColumns({
-                              from: selected.sortField,
-                              to: column.sortField,
-                            }),
-                        )
-                      : undefined
-                  }
-                >
-                  {selected.label === column.label && `🦄`}
-                  {column.label}
-                </li>
-              ))}
-            </ul>
-          </HeadCellMenuPopup>
-        )}
+      {showFieldsMenu && (
+        <HeadCellMenuPopup>
+          <span>show</span>
+          <ul>
+            {dataBrowser.offsetColumns().map((column, i) => (
+              <li
+                key={i}
+                style={{ color: column.visible && '#ccc' }}
+                onClick={
+                  !column.visible
+                    ? pipe(
+                        toggleMenu,
+                        () =>
+                          dataBrowser.switchColumns({
+                            from: selected.sortField,
+                            to: column.sortField,
+                          }),
+                      )
+                    : undefined
+                }
+              >
+                {selected.label === column.label && `🦄`}
+                {column.label}
+              </li>
+            ))}
+          </ul>
+        </HeadCellMenuPopup>
+      )}
     </CellWithMenu>
   );
 };

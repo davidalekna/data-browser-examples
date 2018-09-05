@@ -47,12 +47,14 @@ export const RowItem = styled.div`
   flex: ${({ flex }) => flex};
   height: 46px;
   align-items: center;
+  justify-content: flex-start;
   padding: 0 10px;
   font-size: 14px;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  background: ${({ checked, theme }) => (checked ? theme.bg.inactive : null)};
+  background: ${({ checked, theme }) =>
+    checked ? 'rgba(66,134,244,0.1)' : null};
   cursor: ${({ cursor }) => (cursor ? cursor : 'default')};
 `;
 
@@ -94,4 +96,21 @@ export const Placeholder = styled(FlexRow)`
       background-size: 400px 20px;
       position: relative;
     `};
+`;
+
+export const FlexButton = styled.button`
+  display: flex;
+  flex: none;
+  align-self: center;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3px;
+  font-weight: 600;
+  white-space: nowrap;
+  word-break: keep-all;
+  cursor: pointer;
+  padding: 5px 10px;
+  background-color: ${props =>
+    props.active ? props.theme.brand.border : props.theme.bg.wash};
+  color: ${({ theme, active }) => (active ? theme.text.reverse : theme.text)};
 `;
