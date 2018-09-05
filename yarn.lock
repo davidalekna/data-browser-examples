@@ -5674,9 +5674,9 @@ rc@^1.0.1, rc@^1.1.6, rc@^1.2.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-data-browser@^0.1.10:
-  version "0.1.10"
-  resolved "https://registry.yarnpkg.com/react-data-browser/-/react-data-browser-0.1.10.tgz#efeb1a1cca742361c0ec59ec429cb85fb9ea258b"
+react-data-browser@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/react-data-browser/-/react-data-browser-0.2.0.tgz#95069fba670d28b2fb1e29510fa0a5c058b93cc5"
 
 react-dev-utils@^5.0.2:
   version "5.0.2"
