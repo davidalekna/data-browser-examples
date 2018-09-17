@@ -30,8 +30,7 @@ class App extends React.Component {
       'https://jsonplaceholder.typicode.com/photos?albumId=1',
     );
 
-    const users = await usersPromise;
-    const albums = await albumsPromise;
+    const [users, albums] = await Promise.all([usersPromise, albumsPromise]);
 
     const rows = users.data.map(user => ({
       ...user,
