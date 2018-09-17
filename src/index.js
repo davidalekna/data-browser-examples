@@ -63,7 +63,11 @@ class App extends React.Component {
         <Root>
           <Title>{`Data Browser 🗄`}</Title>
           <DataBrowser
-            columnFlex={['1 1 40%', '0 0 30%', '0 0 30%']}
+            initialColumnFlex={[
+              ['1 1 40%', '0 0 30%', '0 0 30%'],
+              ['1 1 40%', '0 0 20%', '0 0 20%', '0 0 20%'],
+              ['0 0 15%', '1 1 40%', '0 0 15%', '0 0 15%', '0 0 15%'],
+            ]}
             totalItems={this.state.rows.length}
             columns={accessibleColumns}
             onStateChange={this.onStateChange}
@@ -89,8 +93,11 @@ class App extends React.Component {
                 <Table>
                   <FixedTableHead>
                     <HeadCell
-                      style={{ width: fixedColWidth }}
-                      flex="0 0 auto"
+                      style={{
+                        flex: '0 0 auto',
+                        position: 'relative',
+                        width: fixedColWidth,
+                      }}
                       render={() => (
                         <Checkbox
                           position="relative"
