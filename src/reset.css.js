@@ -1,6 +1,6 @@
-import { injectGlobal } from "styled-components";
+import { createGlobalStyle } from 'styled-components';
 
-injectGlobal`
+const GlobalStyle = createGlobalStyle`
   * {
     border: 0;
     box-sizing: inherit;
@@ -39,3 +39,5 @@ injectGlobal`
     appearance: checkbox !important;
   }
 `;
+
+export default GlobalStyle;
