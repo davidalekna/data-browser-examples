@@ -5,6 +5,7 @@ import { CellWithMenu } from '../../globals';
 import pipe from 'ramda/src/pipe';
 
 const HeadCellMenu = ({ dataBrowser, selected, toggleMenu, activeLabel }) => {
+  console.log(dataBrowser);
   const sortField = `${selected.sortField}`;
   const showFieldsMenu =
     !selected.isLocked &&

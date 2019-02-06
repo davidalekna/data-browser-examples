@@ -3756,10 +3756,11 @@ hoek@4.x.x:
   resolved "https://registry.yarnpkg.com/hoek/-/hoek-4.2.1.tgz#9634502aa12c445dd5a7c5734b572bb8738aacbb"
 
 hoist-non-react-statics@^3.0.1:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-3.0.1.tgz#fba3e7df0210eb9447757ca1a7cb607162f0a364"
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-3.3.0.tgz#b09178f0122184fb95acf525daaecb4d8f45958b"
+  integrity sha512-0XsbTXxgiaCDYDIWFcwkmerZPSwywfUqYmwT4jzewKTQSWoE6FCMoUVOeBJWK3E/CrWbxRG3m5GzY4lnIwGRBA==
   dependencies:
-    react-is "^16.3.2"
+    react-is "^16.7.0"
 
 home-or-tmp@^2.0.0:
   version "2.0.0"
@@ -6778,9 +6779,12 @@ react-app-polyfill@^0.1.3:
     raf "3.4.0"
     whatwg-fetch "3.0.0"
 
-react-data-browser@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/react-data-browser/-/react-data-browser-0.2.0.tgz#95069fba670d28b2fb1e29510fa0a5c058b93cc5"
+react-data-browser@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/react-data-browser/-/react-data-browser-1.0.0.tgz#0af62de69c3f8825a4f04b4e43171d473ddc4ee8"
+  integrity sha512-7/aIekYOqjFq7NHB1gB3Xi73DYi2LALMb3oTuK+VS7GmEnRKkrpFl/78DcNA6dHGE8T9lIig0TYqVMgigKICpA==
+  dependencies:
+    hoist-non-react-statics "^3.0.1"
 
 react-dev-utils@^6.0.3:
   version "6.0.3"
@@ -6823,9 +6827,14 @@ react-error-overlay@^5.0.3:
   version "5.0.3"
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-5.0.3.tgz#6eae9350144f3cd036e4f968c5a8bfae542af562"
 
-react-is@^16.3.1, react-is@^16.3.2:
+react-is@^16.3.1:
   version "16.4.2"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.4.2.tgz#84891b56c2b6d9efdee577cc83501dfc5ecead88"
+
+react-is@^16.7.0:
+  version "16.8.0"
+  resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.8.0.tgz#518db476214f3fb0716af9f82dfd420225ae970f"
+  integrity sha512-LOy+3La39aduxaPfuj+lCXC5RQ8ukjVPAAsFJ3yQ+DIOLf4eR9OMKeWKF0IzjRyE95xMj5QELwiXGgfQsIJguA==
 
 react-powerplug@1.0.0-rc.1:
   version "1.0.0-rc.1"

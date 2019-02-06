@@ -20,10 +20,16 @@ import {
   Loading,
 } from './components/table';
 
+// API changed and sort doesnt work. FIX!
+
+const api = axios.create({
+  baseURL: 'https://jsonplaceholder.typicode.com/',
+});
+
 async function fetchRows(setRows, setLoading) {
   const [users, albums] = await Promise.all([
-    axios.get('https://jsonplaceholder.typicode.com/users'),
-    axios.get('https://jsonplaceholder.typicode.com/photos?albumId=1'),
+    api('users'),
+    api('photos?albumId=1'),
   ]);
   const data = users.data.map(user => ({
     ...user,
